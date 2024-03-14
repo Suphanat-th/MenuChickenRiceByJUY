@@ -1,38 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import List from '@mui/material/List';
 
+import Category from "../JSON/category.json"
+import Menu from "../components/menu"
+
+import { ICategory } from "../Model/M_Category"
 import { IMenu } from "../Model/M_Menu"
 
-interface DataProps {
-  data: Array<IMenu>;
-}
 
-const body: React.FC<DataProps> = ({ data }) => {
+const body = ({ data }: { data: IMenu[] }) => {
+
+  // const [ListCategory, SetCategory] = useState(Category);
+  let ListCategory = Category;
+  let group_type: number[] = [];
+
+  data.forEach((x, i) => {
+    if (!group_type.includes(x.TYPE_ID))
+      group_type.push(x.TYPE_ID);
+  });
+  ListCategory = Category.filter(x => group_type.includes(x.TYPE_ID));
+  data = data.filter(x => group_type.includes(x.TYPE_ID));
   return (
+    <div className="mt-6 grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
+      {ListCategory.map((cate: ICategory) => (
+        <div key={cate.TYPE_ID} className="group relative my-1">
+          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-100 lg:aspect-none group-hover:opacity-75 lg:h-10 justify-items-center items-center">
+            <span>{cate.TITLE}</span>
+          </div>
+          {/* {data.filter(x => group_type.includes(x.TYPE_ID))
+            .map((menu: IMenu) => {
+          <Menu data={data} key={cate.TYPE_ID} />
+            })} */}
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {data.filter(x => x.TYPE_ID === cate.TYPE_ID).map((menu: IMenu) => (
+              <Menu data={menu} key={menu.ID} />
+            ))}
+          </div>
 
-    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      
-      {data.map((product: IMenu) => (
-        <div key={product.ID} className="group relative">
-          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img
-              src={product.IMG}
-              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-            />
-          </div>
-          <div className="mt-4 flex justify-between">
-            <div>
-              <h3 className="text-sm text-gray-700">
-                <a href={product.TITLE}>
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {product.TITLE}
-                </a>
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">{product.TITLE}</p>
-            </div>
-            <p className="text-sm font-medium text-gray-900">{product.PRICE}</p>
-          </div>
         </div>
       ))}
     </div>

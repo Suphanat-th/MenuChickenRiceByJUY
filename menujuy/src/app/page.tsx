@@ -11,6 +11,7 @@ import Menu from "../components/menu"
 import ListMenu from "../JSON/MENU.json"
 
 import { IFilter } from "../Model/M_Filter"
+import { IMenu } from "../Model/M_Menu"
 
 export default function Home() {
 
@@ -42,7 +43,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">จุ้ยข้าวมันไก่</h2>
           <FilterOptions fnFilter={OnFilterMenu} />
-          <Body data={dataFromSomePage} />
+          <Body data={dataFromSomePage}/>
         </div>
       </div>
     </ThemeProvider>

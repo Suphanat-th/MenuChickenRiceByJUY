@@ -1,31 +1,17 @@
 import React from 'react'
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
+
+import MenuImage from "../components/Menu/MenuImage"
+import MenuInfo from "../components/Menu/MenuInfo"
 
 import { IMenu } from "../Model/M_Menu"
-import { X } from '@mui/icons-material';
 
-interface DataProps {
-    data: Array<IMenu>;
-}
 
-const menu: React.FC<DataProps> = ({ data }) => {
+
+const menu = ({ data }: { data: IMenu }) => {
     return (
-        <div>
-            {data.map((x) => (
-                <li key={`section-${x.ID}`}>
-                    <ul>
-                        <ListSubheader>{`I'm sticky ${x}`}</ListSubheader>
-                        {[0, 1, 2].map((item) => (
-                            <ListItem key={`item-${item}-${item}`}>
-                                <ListItemText primary={`Item ${item}`} />
-                            </ListItem>
-                        ))}
-                    </ul>
-                </li>
-            ))}
+        <div key={data.ID} className="group relative">
+            <MenuImage data={data.IMG} />
+            <MenuInfo data={data} />
         </div>
     )
 }

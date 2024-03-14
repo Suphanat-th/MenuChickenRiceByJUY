@@ -13,7 +13,8 @@ interface FilterOptionsProps {
     fnFilter: (filter: IFilter) => void;
 }
 
-const FilterLayout: React.FC<FilterOptionsProps> = ({ fnFilter }) => {
+const FilterLayout = (FilterOption: FilterOptionsProps) => {
+    const { fnFilter } = FilterOption;
     let FilterOptions: IFilter = {
         ID: null,
         TYPE_ID: null,
@@ -26,7 +27,7 @@ const FilterLayout: React.FC<FilterOptionsProps> = ({ fnFilter }) => {
 
     return (
         <FormControl sx={{ m: 1, minWidth: 300 }}>
-        <InputLabel id="demo-simple-select-standard-label">ประเภทเมนูอาหาร</InputLabel>
+            <InputLabel id="demo-simple-select-standard-label">ประเภทเมนูอาหาร</InputLabel>
             <Select
                 labelId="demo-select-small-label"
                 key={"TYPE"}
