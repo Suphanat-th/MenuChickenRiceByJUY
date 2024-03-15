@@ -13,7 +13,7 @@ const MenuInfo = ({ data }: { data: IMenu }) => {
                 </a>
             </h3>
         </div>
-        <p className="text-sm font-medium text-gray-900">{data.PRICE}</p>
+        <p className="text-sm font-medium text-gray-900">{data.PRICE.join("-")}</p>
     </div>
     )
 }

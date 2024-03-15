@@ -1,4 +1,4 @@
-import Category from "../JSON/category.json"
+import Category from "../JSON/Category.json"
 import { IFilter } from "../Model/M_Filter"
 import * as React from 'react';
 
@@ -16,7 +16,6 @@ interface FilterOptionsProps {
 const FilterLayout = (FilterOption: FilterOptionsProps) => {
     const { fnFilter } = FilterOption;
     let FilterOptions: IFilter = {
-        ID: null,
         TYPE_ID: null,
     } as IFilter;
 
@@ -24,7 +23,6 @@ const FilterLayout = (FilterOption: FilterOptionsProps) => {
         FilterOptions.TYPE_ID = e.target.value === "" ? null : parseInt(e.target.value);
         fnFilter(FilterOptions);
     }
-
     return (
         <FormControl sx={{ m: 1, minWidth: 300 }}>
             <InputLabel id="demo-simple-select-standard-label">ประเภทเมนูอาหาร</InputLabel>

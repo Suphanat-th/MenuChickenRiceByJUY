@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 
-import Category from "../JSON/category.json"
+import Category from "../JSON/Category.json"
 import Menu from "../components/menu"
 
 import { ICategory } from "../Model/M_Category"
@@ -33,7 +33,7 @@ const body = ({ data }: { data: IMenu[] }) => {
             })} */}
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {data.filter(x => x.TYPE_ID === cate.TYPE_ID).map((menu: IMenu) => (
-              <Menu data={menu} key={menu.ID} />
+              <Menu data={menu} key={menu.TITLE} />
             ))}
           </div>
 

@@ -9,7 +9,7 @@ import { IMenu } from "../Model/M_Menu"
 
 const menu = ({ data }: { data: IMenu }) => {
     return (
-        <div key={data.ID} className="group relative">
+        <div key={data.TITLE} className="group relative">
             <MenuImage data={data.IMG} />
             <MenuInfo data={data} />
         </div>
