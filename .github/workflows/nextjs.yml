@@ -47,7 +47,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4  # Restore npm cacheled
         with:
-          node-version: lts/*
+          node-version: 20
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
