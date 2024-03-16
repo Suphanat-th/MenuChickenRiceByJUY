@@ -46,9 +46,24 @@ jobs:
           exit 0
       - name: Setup Node
         uses: actions/setup-node@v4
+        
+        uses: actions/cache@v3  # Restore npm cache
+        with:
+          path: ~/.npm  # Path to the npm cache
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Cache key based on package files
+          restore-keys: |  # Restore from previous build cache if possible
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
+          cache: npm  # Enable caching for npm dependencies
+        uses: actions/cache@v3  # Save npm cache after dependencies installed
+        with:
+          path: ~/.npm  # Same path as restore
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Same cache key
+          save-cache: true  # Save the cache for future runs
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
