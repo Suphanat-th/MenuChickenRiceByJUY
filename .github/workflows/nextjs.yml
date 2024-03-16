@@ -50,7 +50,6 @@ jobs:
           path: ~/.npm  # Same path as restore
           key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Same cache key
           save-cache: true  # Save the cache for future runs
-        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm  # Enable caching for npm dependencies
