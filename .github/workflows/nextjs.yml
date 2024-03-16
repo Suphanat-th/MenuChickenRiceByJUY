@@ -34,7 +34,7 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          if [ -f "package.json" ]; then
+          if [[ -f "package.json" ]]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=npm" >> $GITHUB_OUTPUT
             echo "runner=" >> $GITHUB_OUTPUT  # No runner needed for npm
@@ -43,10 +43,10 @@ jobs:
             echo "command=yarn" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
           fi
-          exit 0
-          
+
       - name: Setup Node
         uses: actions/setup-node@v4  # Restore npm cacheled
+        with:
           node-version: "20"
           cache: npm  # Enable caching for npm dependencies
 
