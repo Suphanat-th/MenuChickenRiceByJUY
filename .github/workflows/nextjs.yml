@@ -37,7 +37,7 @@ jobs:
           if [[ -f "package.json" ]]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=npm" >> $GITHUB_OUTPUT
-            echo "runner=" >> $GITHUB_OUTPUT  # No runner needed for npm
+            echo "runner=install next" >> $GITHUB_OUTPUT  # No runner needed for npm
           else
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=yarn" >> $GITHUB_OUTPUT
@@ -64,7 +64,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Same cache key
           save-cache: true  # Save the cache for future runs
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.command }}  # Use output from detect-package-manager
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
