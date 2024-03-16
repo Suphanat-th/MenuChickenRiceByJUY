@@ -45,12 +45,7 @@ jobs:
           fi
           exit 0
       - name: Setup Node
-        uses: actions/cache@v3  # Restore npm cacheled
-        with:
-          path: ~/.npm  # Same path as restore
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Same cache key
-          save-cache: true  # Save the cache for future runs
-        with:
+        uses: actions/setup-node@v4  # Restore npm cacheled
           node-version: "20"
           cache: npm  # Enable caching for npm dependencies
 
@@ -65,11 +60,9 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Cache key based on package files
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: ~/.npm  # Same path as restore
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}  # Same cache key
+          save-cache: true  # Save the cache for future runs
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
