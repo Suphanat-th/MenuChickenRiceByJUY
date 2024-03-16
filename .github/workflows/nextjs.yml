@@ -43,6 +43,8 @@ jobs:
             echo "command=yarn" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
           fi
+          exit 0
+          
       - name: Setup Node
         uses: actions/setup-node@v4  # Restore npm cacheled
           node-version: "20"
