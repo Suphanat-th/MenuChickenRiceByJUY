@@ -80,8 +80,13 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ls -a
+            npx --no-install next export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          run : |
+            cd ${{ github.workspace }}
+            ls -la
 
   # Deployment job
   deploy:
