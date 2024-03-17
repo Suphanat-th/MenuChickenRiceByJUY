@@ -71,7 +71,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
         run: |
-          cd ${{ github.workspace }}
+          cd ${{ github.workspace }}/menujuy
           npm install
           npx tsc
           npm run build
