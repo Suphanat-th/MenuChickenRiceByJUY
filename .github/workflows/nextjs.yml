@@ -73,7 +73,6 @@ jobs:
           ls -a ${{ github.workspace }}/menujuy
           cd ${{ github.workspace }}/menujuy
           ls -a
-          npm install
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.command }} run export
       - name: Upload artifact
