@@ -7,7 +7,7 @@ const MenuInfo = ({ data }: { data: IMenu }) => {
         <div className="mt-4 flex justify-between">
         <div>
             <h3 className="text-sm text-gray-700">
-                <a href={data.TITLE}>
+                <a href="javascript:void(0)">
                     <span aria-hidden="true" className="absolute inset-0" />
                     {data.TITLE}
                 </a>
