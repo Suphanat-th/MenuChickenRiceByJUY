@@ -58,6 +58,7 @@ jobs:
           # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples.md#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ~/.npm
+            ${{ github.workspace }}/.next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
@@ -65,14 +66,16 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: List files in root directory
         run: |
-            echo "Root path: $GITHUB_WORKSPACE"
+            cd ${{ github.workspace }}/.next
+            ls -la
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
+        run: |
+            cd ${{ github.workspace }}/menujuy
+            ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
         run: |
-          ls -a ${{ github.workspace }}/menujuy
-          cd ${{ github.workspace }}/menujuy
-          ls -a
+            cd ${{ github.workspace }}/menujuy
+            ${{ steps.detect-package-manager.outputs.command }} run build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.command }} run export
       - name: Upload artifact
