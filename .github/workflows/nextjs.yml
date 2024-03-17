@@ -65,8 +65,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: List files in root directory
         run: |
-            cd ${{ github.workspace }}/menujuy
-            ls -la
+            echo "Root path: $GITHUB_WORKSPACE"
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
