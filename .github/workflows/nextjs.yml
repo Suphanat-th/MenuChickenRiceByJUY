@@ -76,7 +76,8 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
-
+      - name:  List contents of 'out' directory
+        run: ls -al ./out
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
