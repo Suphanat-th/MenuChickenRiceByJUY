@@ -72,8 +72,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
         run: |
-            cd menujuy 
-            ls -la
+            ${{ github.workspace }}/.next
             ${{ steps.detect-package-manager.outputs.command }} run build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.command }} run export
