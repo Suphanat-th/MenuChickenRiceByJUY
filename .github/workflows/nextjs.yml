@@ -28,7 +28,7 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    steps:- 
+    steps:
       -name: Print current directory
         run: pwd
       - name: Checkout
