@@ -1,3 +1,4 @@
+import Img from 'next/image';
 import React from 'react'
 
 
@@ -7,6 +8,7 @@ const MenuImage = ({ data }: { data: string }) => {
             <img
                 src={data}
                 className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                alt=""
             />
         </div>
     )
