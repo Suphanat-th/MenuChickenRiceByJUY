@@ -76,17 +76,16 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
-      - name:  List contents of 'out' directory
+      - name: Static HTML export with Next.js
         run: |
             cd ${{ github.workspace }}/menujuy
             ls -a
-            npx --no-install next export
+            ${{ steps.detect-package-manager.outputs.command }} run export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          run : |
-            cd ${{ github.workspace }}
-            ls -la
+          path: ${{ github.workspace }}/menujuy/out
+
 
   # Deployment job
   deploy:
