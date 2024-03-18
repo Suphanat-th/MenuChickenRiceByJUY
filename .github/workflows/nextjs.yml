@@ -42,10 +42,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4  # Restore npm cacheled
         with:
-          node-version: ^18
-          cache: | 
-              cd ${{ github.workspace }}/menujuy 
-              ${{ steps.detect-package-manager.outputs.manager }}
+          node-version: 20
+          cache: npm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
