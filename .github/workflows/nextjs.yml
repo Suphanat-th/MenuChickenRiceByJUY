@@ -78,6 +78,10 @@ jobs:
             ls -la ${{ github.workspace }}
             pwd
 
+      - name: Static HTML export with Next.js
+        run: |
+          cd ${{ github.workspace }}/menujuy
+          ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
