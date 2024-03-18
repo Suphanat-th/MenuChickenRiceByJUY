@@ -31,6 +31,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -41,7 +42,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4  # Restore npm cacheled
         with:
-          node-version: 20
+          node-version: 16
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -50,7 +51,7 @@ jobs:
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           #
           # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: ./build
+          static_site_generator: next
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -69,20 +70,19 @@ jobs:
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
       - name: Build with Next.js
-        run:  ${{ steps.detect-package-manager.outputs.command }} run build
-          
-  
-      - name: Archive artifacts
         run: |
-          mkdir -p $RUNNER_TEMP/artifact
-          cp -r ./build $RUNNER_TEMP/artifact
-          tar -cvf $RUNNER_TEMP/artifact.tar -C $RUNNER_TEMP/artifact . 
+            cd ${{ github.workspace }}/menujuy
+            ${{ steps.detect-package-manager.outputs.command }} run build
+            ls -la ${{ github.workspace }}/menujuy/.next
+            ls -la ${{ github.workspace }}/menujuy/
+            ls -la ${{ github.workspace }}
+            pwd
           
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: static-site
-          path: $RUNNER_TEMP/artifact.tar
+          path: ./out 
 
 
   # Deployment job
