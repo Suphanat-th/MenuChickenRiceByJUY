@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: cd ${{ github.workspace }}/out
+          path: cd ${{ github.workspace }}/menujuy/out
 
 
   # Deployment job
