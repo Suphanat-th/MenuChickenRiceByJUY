@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: ${{ github.workspace }}/out
+          path: ${{ github.workspace }}/MenuChickenRiceByJUY/out
 
 
   # Deployment job
