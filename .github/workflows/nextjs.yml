@@ -79,9 +79,8 @@ jobs:
             pwd
           
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: static-site
           path: ./out 
 
 
