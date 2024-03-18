@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    basePath:"/MenuChickenRiceByJUY",
     output: {
         // Specify the directory where the exported files should be generated
         // Optionally, you can specify a subdirectory here
