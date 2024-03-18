@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
     output: {
         // This allows you to export to static HTML files
         // Optionally, you can specify a subdirectory here
