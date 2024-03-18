@@ -77,10 +77,7 @@ jobs:
             ${{ steps.detect-package-manager.outputs.command }} run build
             pwd
 
-      - name: Static HTML export with Next.js
-        run: |
-          cd ${{ github.workspace }}/menujuy
-          ${{ steps.detect-package-manager.outputs.command }} run export
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
