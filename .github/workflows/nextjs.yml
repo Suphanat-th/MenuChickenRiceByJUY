@@ -75,7 +75,6 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
-            pwd
 
 
 
@@ -83,7 +82,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: cd ${{ github.workspace }}/menujuy/out
+          path: ${{ github.workspace }}/menujuy/out
 
 
   # Deployment job
