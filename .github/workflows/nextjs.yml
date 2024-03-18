@@ -80,6 +80,9 @@ jobs:
             ${{ steps.detect-package-manager.outputs.command }} run build
 
 
+      - name: Log OUT
+        run: |
+          ls -la ${{ github.workspace }}/menujuy/out
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
