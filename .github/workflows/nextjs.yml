@@ -50,7 +50,7 @@ jobs:
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           #
           # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
+          static_site_generator: ./build
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -75,7 +75,7 @@ jobs:
             ls -la ${{ github.workspace }}/menujuy/.next
             ls -la ${{ github.workspace }}/menujuy/
             ls -la ${{ github.workspace }}
-            ls -la ./
+            pwd
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
