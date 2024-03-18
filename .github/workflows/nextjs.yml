@@ -74,6 +74,8 @@ jobs:
             ${{ steps.detect-package-manager.outputs.command }} run build
             ls -la ${{ github.workspace }}/menujuy/.next
             ls -la ${{ github.workspace }}/menujuy/
+            ls -la ${{ github.workspace }}
+            ls -la ./
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
