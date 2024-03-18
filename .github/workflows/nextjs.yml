@@ -79,7 +79,7 @@ jobs:
             pwd
           
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
           path: ./out 
@@ -95,4 +95,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 
+        with:
+          artifact-name: github-pages  # Name of the artifact to deploy
