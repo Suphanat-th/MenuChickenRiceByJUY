@@ -76,7 +76,6 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
-            ${{ steps.detect-package-manager.outputs.command }} run export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
