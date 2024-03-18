@@ -77,11 +77,17 @@ jobs:
             ls -la ${{ github.workspace }}
             pwd
           
+  
+      - name: Archive artifacts
+        run: |
+          mkdir -p $RUNNER_TEMP/artifact
+          cp -r ./build $RUNNER_TEMP/artifact
+          tar -cvf $RUNNER_TEMP/artifact.tar -C $RUNNER_TEMP/artifact . 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: static-site
-          path: ./build 
+          path: $RUNNER_TEMP/artifact.tar
 
 
   # Deployment job
