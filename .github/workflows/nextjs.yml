@@ -64,10 +64,6 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-      - name: List files in root directory
-        run: |
-            cd ${{ github.workspace }}
-            ls -la
       - name: Install dependencies
         run: |
             cd ${{ github.workspace }}/menujuy
@@ -76,6 +72,10 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
+      - name: List files in root directory
+        run: |
+            cd ${{ github.workspace }}/menujuy
+            ls -la
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
