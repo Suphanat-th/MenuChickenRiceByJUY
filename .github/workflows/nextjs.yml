@@ -77,12 +77,12 @@ jobs:
             ls -la ${{ github.workspace }}/menujuy/
             ls -la ${{ github.workspace }}
             pwd
-          
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: github-pages
-          path: ./out 
+          path: cd ${{ github.workspace }}/out
 
 
   # Deployment job
@@ -95,6 +95,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
-        with:
-          artifact-name: github-pages  # Name of the artifact to deploy
+        uses: actions/deploy-pages@v4
