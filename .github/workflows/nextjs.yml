@@ -43,9 +43,7 @@ jobs:
         uses: actions/setup-node@v4  # Restore npm cacheled
         with:
           node-version: ^18
-
-      - name: Create out directory
-        run: mkdir -p ${{ github.workspace }}/menujuy/out
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
