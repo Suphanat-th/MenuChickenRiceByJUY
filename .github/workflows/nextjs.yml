@@ -74,14 +74,12 @@ jobs:
             ${{ steps.detect-package-manager.outputs.command }} run build
       - name: Debug Workflow
         run: |
-          ls -la ${{ github.workspace }}/menujuy  # List contents of the 'menujuy' directory
-          ls -la ./  # List contents of the 'out' directory
-          pwd  # Print current working directory
+            ls -la ${{ github.workspace }}/menujuy/out
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./menujuy/out
+          path: ${{ github.workspace }}/menujuy/out
 
 
   # Deployment job
