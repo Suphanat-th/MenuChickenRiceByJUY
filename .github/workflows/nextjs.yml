@@ -65,10 +65,12 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Install dependencies
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.runner }}
+
       - name: Build with Next.js
         run: |
             cd ${{ github.workspace }}/menujuy
@@ -78,7 +80,8 @@ jobs:
       - name: Static HTML export with Next.js
         run: |
           cd ${{ github.workspace }}/menujuy
-          ${{ steps.detect-package-manager.outputs.command }} next export
+          ${{ steps.detect-package-manager.outputs.command }} run export
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
