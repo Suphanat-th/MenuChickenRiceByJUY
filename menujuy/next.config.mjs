@@ -6,7 +6,7 @@ const nextConfig = {
         // For example, if you want to export to '/out' directory:
         // dir: '/out'
         // By default, it exports to the root directory
-        __dirname: 'out', // Update this path as per your requirement
+        dir: 'out', // Update this path as per your requirement
       },
 };
 
