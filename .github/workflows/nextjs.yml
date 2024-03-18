@@ -72,9 +72,8 @@ jobs:
         run: |
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
-      - name: Debug Workflow
-        run: |
             ls -la ${{ github.workspace }}/menujuy/.next
+            ls -la ${{ github.workspace }}/menujuy/
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
