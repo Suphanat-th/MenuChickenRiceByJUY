@@ -74,16 +74,11 @@ jobs:
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
 
-
-      - name: Log OUT
-        run: |
-          ls -la ${{ github.workspace }}/menujuy/out
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: ${{ github.workspace }}/menujuy/out
+          path: ./out
 
 
   # Deployment job
