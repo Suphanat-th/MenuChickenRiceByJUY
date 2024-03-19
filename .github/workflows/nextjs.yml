@@ -74,11 +74,7 @@ jobs:
             cd ${{ github.workspace }}/menujuy
             ${{ steps.detect-package-manager.outputs.command }} run build
 
-      - name: Export Static
-        run: |
-            cd ${{ github.workspace }}/menujuy
-            ${{ steps.detect-package-manager.outputs.command }} run export
-      
+
       - name: LOG OUT
         run: |
              cd ${{ github.workspace }}/menujuy
