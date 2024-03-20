@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+"use client"
+import React, { useEffect } from 'react'
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -13,7 +14,7 @@ import { useAppContext } from './AppWarpper'
 // Interface
 import { ICategory } from "../Model/M_Category";
 
-const body = () => {
+const Body = () => {
   const { getMainMenu, getListMenu, getListCategory } = useAppContext();
 
   let data: IMenu[] = getListMenu;
@@ -26,11 +27,6 @@ const body = () => {
     listCategory = getListCategory;
   }, [getListCategory]);
 
-  useEffect(() => {
-
-  }, []);
-  // const [ListCategory, SetCategory] = useState(Category);
-  // let ListCategory: ICategory[] = getListCategory;
   let group_type: number[] = [];
 
   data.forEach((x, i) => {
@@ -84,4 +80,4 @@ const body = () => {
     </div>
   )
 }
-export default body;
+export default Body;
