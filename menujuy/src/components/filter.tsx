@@ -1,47 +1,184 @@
-import Category from "../JSON/Category.json"
-import { IFilter } from "../Model/M_Filter"
-import * as React from 'react';
+"use client"
+import { useEffect, useState } from 'react';
 
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+// MUI
+import { Autocomplete, TextField, FormControl, InputLabel, Box, Stack } from "@mui/material";
+import { styled, lighten, darken } from '@mui/system';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+//Interface
+import { IFilter } from "@/Model/M_Filter"
+import { IMenu } from '@/Model/M_Menu';
+import { ICategory } from "../Model/M_Category";
+import { useAppContext } from './AppWarpper';
+
+const GroupHeader = styled('div')(({ theme }) => ({
+    position: 'sticky',
+    top: '-8px',
+    padding: '4px 10px',
+    color: "#bfdbfe",
+    backgroundColor: "#3b82f6",
+}));
 
 
-interface FilterOptionsProps {
-    fnFilter: (filter: IFilter) => void;
-}
+const GroupItems = styled('ul')({
+    padding: 0,
+});
 
-const FilterLayout = (FilterOption: FilterOptionsProps) => {
-    const { fnFilter } = FilterOption;
-    let FilterOptions: IFilter = {
-        TYPE_ID: null,
-    } as IFilter;
 
-    const Filter_TYPE = (e: SelectChangeEvent) => {
-        FilterOptions.TYPE_ID = e.target.value === "" ? null : parseInt(e.target.value);
-        fnFilter(FilterOptions);
+const FilterLayout = () => {
+    const { getMainMenu, getFilter, setFilter, getListMenu, setListMenu, getListCategory } = useAppContext();
+
+    let ListCategory: ICategory[] = getListCategory;
+    let ListMenu: IMenu[] = getListMenu;
+    let MainMenu: IMenu[] = getMainMenu;
+    let Filter: IFilter = getFilter;
+
+
+    const listMenuOptions = ListMenu.map((option) => {
+        const firstLetter = ListCategory.find(x => x.TYPE_ID === option.TYPE_ID)?.TITLE?.toString();
+        return {
+            firstLetter: firstLetter,
+            ...option,
+        };
+    });
+
+    const Filter_TYPE = (v: number) => {
+        setFilter((prevFilter: IFilter) => ({
+            ...prevFilter,
+            TYPE_ID: v === undefined ? null : v
+        }));
     }
+
+    const Filter_ID = (v: number) => {
+        setFilter((prevFilter: IFilter) => ({
+            ...prevFilter,
+            ID: v === undefined ? null : v
+        }));
+    }
+    useEffect(() => {
+        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
+        console.log("getFilter.ID", getFilter.ID);
+
+        let filteredMenu = MainMenu;
+
+        if (getFilter.TYPE_ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
+        }
+
+        if (getFilter.ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
+        }
+
+        setListMenu(filteredMenu);
+    }, [getFilter.TYPE_ID, getFilter.ID, MainMenu]);
+
+
+    useEffect(() => {
+        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
+        console.log("getFilter.ID", getFilter.ID);
+
+        let filteredMenu = MainMenu;
+
+        if (getFilter.TYPE_ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
+        }
+
+        if (getFilter.ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
+        }
+        window.scrollTo(0, 0);
+        setListMenu(filteredMenu);
+    }, [getFilter.TYPE_ID, getFilter.ID, MainMenu]);
+
+
+    useEffect(() => {
+        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
+        console.log("getFilter.ID", getFilter.ID);
+
+        let filteredMenu = MainMenu;
+
+        if (getFilter.TYPE_ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
+        }
+
+        if (getFilter.ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
+        }
+        window.scrollTo(0, 0);
+        setListMenu(filteredMenu);
+    }, [MainMenu]);
     return (
-        <FormControl sx={{ m: 1, minWidth: 300 }}>
-            <InputLabel id="demo-simple-select-standard-label">ประเภทเมนูอาหาร</InputLabel>
-            <Select
-                labelId="demo-select-small-label"
-                key={"TYPE"}
-                id="SEL_TYPE"
-                label="ประเภทเมนูอาหาร"
-                onChange={Filter_TYPE}>
-                <MenuItem value="">
-                    <em>เลือกหมวดหมู่อาหาร</em>
-                </MenuItem>
-                {Category.map((x) => (
-                    <MenuItem key={`CATE_${x.TYPE_ID}`} value={x.TYPE_ID}>
-                        <em>{x.TITLE}</em>
-                    </MenuItem>
-                ))}
-            </Select>
-        </FormControl>
+        <div className="mt-3 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <Autocomplete
+                id="sel_category"
+                className="w-full"
+                options={ListCategory}
+                autoHighlight
+                getOptionLabel={(option) => option.TITLE!}
+                renderOption={(props, option) => (
+                    <Box
+                        component="li" {...props}
+                        key={`sel_category_${option.TYPE_ID}`}
+                    >
+                        {option.TITLE}
+                    </Box>
+                )}
+                isOptionEqualToValue={(option, value) => option.TYPE_ID === value.TYPE_ID}
+                onChange={(e, v) => {
+                    Filter_TYPE(v?.TYPE_ID!)
+                }}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="โปรดเลือก"
+                        inputProps={{
+                            ...params.inputProps
+                        }}
+                    />
+                )}
+            />
+
+            <Autocomplete
+                id="sel_menu"
+                className="w-full"
+                options={listMenuOptions.sort((a, b) => -b!.firstLetter!.localeCompare(a!.firstLetter!))}
+                groupBy={(option) => option!.firstLetter!}
+                autoHighlight
+                getOptionLabel={(option) => option.TITLE}
+                renderOption={(props, option) => (
+                    <Box component="li"
+                        sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}
+                        key={`sel_menu_${option.TYPE_ID}_${option.ID}`}
+                    >
+                        {option.TITLE}
+                    </Box>
+                )}
+                isOptionEqualToValue={(option, value) => option.TYPE_ID === value.TYPE_ID}
+                onChange={(e, v) => {
+                    Filter_ID(v?.ID!)
+                }}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="เมนูที่ต้องการค้นหา"
+                        inputProps={{
+                            ...params.inputProps
+                        }}
+                    />
+                )}
+
+                renderGroup={(params) => (
+                    <li key={params.key}>
+                        <GroupHeader>{params.group}</GroupHeader>
+                        <GroupItems>{params.children}</GroupItems>
+                    </li>
+                )}
+
+            />
+        </div>
     );
 };
 

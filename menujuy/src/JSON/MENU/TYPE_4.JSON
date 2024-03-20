@@ -1,0 +1,83 @@
+[
+    {
+        "ID": 1,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวยำไก่แซ่บ",
+        "IMG": "https://img.wongnai.com/p/1920x0/2020/11/07/95ce4ec6055a4e02a650c1c58dd41849.jpg",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 2,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดซอสเผ็ดเกาหลี",
+        "IMG": "https://img.wongnai.com/p/256x256/2021/07/09/067f283f36054a5a9d8216b095d9d1dc.jpg",
+        "PRICE": [
+            55
+        ]
+    },
+    {
+        "ID": 3,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดซอสเขียวหวาน",
+        "IMG": "https://img.wongnai.com/p/400x0/2021/04/26/af1a4ac11a8d409fbdec9a45980ff7aa.jpg",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 4,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดซอสแกงกะหรี่ญี่ปุ่น",
+        "IMG": "https://www.cpbrandsite.com/contents/recipe/8exw6qiuoydvckpzrmz4stxgawwc3dc8juchzrbc.jpg",
+        "PRICE": [
+            60
+        ]
+    },
+    {
+        "ID": 5,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดซอสกระเทียม",
+        "IMG": "https://img.wongnai.com/p/256x256/2022/07/21/bcdf53387a584aab915b3c7ee0154239.jpg",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 6,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดไส้กรอกไก่",
+        "IMG": "https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/ogDDe7DqFAT6m5MVAbHfJEA7R16EIgAfALcRYE~tplv-tej9nj120t-origin.webp",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 7,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดซอสเทอริยากิมาโย",
+        "IMG": "https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/oA8ephazgrAChh6ftAy2BAEFEUIjOZILHyVDXQ~tplv-tej9nj120t-origin.webp",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 8,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวไก่ทอดคั่วพริกกระเทียม",
+        "IMG": "https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.6435-9/84284074_145089757185389_785003627424179646_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGi4-NT87oV_cVJvSBlmGhztF8QGSoQ_GK0XxAZKhD8YmrrqhZi6XrWIb30fbNU-rMdV0R09UjJAwAyjYic5YBi&_nc_ohc=rbVkVZpfch8AX8cXJsV&_nc_ht=scontent.fbkk2-7.fna&oh=00_AfCCwOrZ4E7feh_p1YcEIIZp9mGHDfEazAT_zHoE1X78VQ&oe=661BF0A9",
+        "PRICE": [
+            50
+        ]
+    },
+    {
+        "ID": 9,
+        "TYPE_ID": 4,
+        "TITLE": "ข้าวผัดไข่ไก่ทอด",
+        "IMG": "https://www.easycookingmenu.com/media/k2/items/cache/1784e00b0b60f953190c43cb5b6689b8_XL.jpg",
+        "PRICE": [
+            60
+        ]
+    }
+]
