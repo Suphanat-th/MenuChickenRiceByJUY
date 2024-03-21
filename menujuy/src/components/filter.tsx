@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 // MUI
 import { Autocomplete, TextField, FormControl, InputLabel, Box, Stack } from "@mui/material";
@@ -45,6 +45,7 @@ const FilterLayout = () => {
     });
 
     const Filter_TYPE = (v: number) => {
+
         setFilter((prevFilter: IFilter) => ({
             ...prevFilter,
             TYPE_ID: v === undefined ? null : v
@@ -57,64 +58,51 @@ const FilterLayout = () => {
             ID: v === undefined ? null : v
         }));
     }
+    // useEffect(() => {
+
+    //     let filteredMenu = MainMenu;
+
+    //     if (getFilter.TYPE_ID != null) {
+    //         filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
+    //     }
+
+    //     if (getFilter.ID != null) {
+    //         filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
+    //     }
+
+    //     setListMenu(filteredMenu);
+    // }, [getFilter.TYPE_ID, getFilter.ID, MainMenu]);
+
+
+
+
     useEffect(() => {
-        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
-        console.log("getFilter.ID", getFilter.ID);
 
         let filteredMenu = MainMenu;
 
-        if (getFilter.TYPE_ID != null) {
+        if (getFilter.TYPE_ID != null && getFilter.ID != null) {
+            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID && x.ID === getFilter.ID);
+        } else if (getFilter.TYPE_ID != null && getFilter.ID == null) {
             filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
-        }
-
-        if (getFilter.ID != null) {
+        } else if (getFilter.TYPE_ID == null && getFilter.ID != null) {
             filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
         }
+        // else if(getFilter.TYPE_ID == null && getFilter.ID != null){
+        //     filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID && x.ID === getFilter.ID);
+        // }
 
-        setListMenu(filteredMenu);
-    }, [getFilter.TYPE_ID, getFilter.ID, MainMenu]);
 
-
-    useEffect(() => {
-        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
-        console.log("getFilter.ID", getFilter.ID);
-
-        let filteredMenu = MainMenu;
-
-        if (getFilter.TYPE_ID != null) {
-            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
-        }
-
-        if (getFilter.ID != null) {
-            filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
-        }
         window.scrollTo(0, 0);
         setListMenu(filteredMenu);
     }, [getFilter.TYPE_ID, getFilter.ID, MainMenu]);
 
-
-    useEffect(() => {
-        console.log("getFilter.TYPE_ID", getFilter.TYPE_ID);
-        console.log("getFilter.ID", getFilter.ID);
-
-        let filteredMenu = MainMenu;
-
-        if (getFilter.TYPE_ID != null) {
-            filteredMenu = filteredMenu.filter(x => x.TYPE_ID === getFilter.TYPE_ID);
-        }
-
-        if (getFilter.ID != null) {
-            filteredMenu = filteredMenu.filter(x => x.ID === getFilter.ID);
-        }
-        window.scrollTo(0, 0);
-        setListMenu(filteredMenu);
-    }, [MainMenu]);
     return (
         <div className="mt-3 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             <Autocomplete
                 id="sel_category"
                 className="w-full"
+                size="small"
                 options={ListCategory}
                 autoHighlight
                 getOptionLabel={(option) => option.TITLE!}
@@ -133,7 +121,7 @@ const FilterLayout = () => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
-                        label="โปรดเลือก"
+                        label="โปรดเลือกประเภทอาหาร"
                         inputProps={{
                             ...params.inputProps
                         }}
@@ -144,6 +132,7 @@ const FilterLayout = () => {
             <Autocomplete
                 id="sel_menu"
                 className="w-full"
+                size="small"
                 options={listMenuOptions.sort((a, b) => -b!.firstLetter!.localeCompare(a!.firstLetter!))}
                 groupBy={(option) => option!.firstLetter!}
                 autoHighlight
@@ -163,7 +152,7 @@ const FilterLayout = () => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
-                        label="เมนูที่ต้องการค้นหา"
+                        label="โปรเลือกเมนูอาหาร"
                         inputProps={{
                             ...params.inputProps
                         }}
