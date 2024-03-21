@@ -1,9 +1,7 @@
 "use client"
 import React, { useEffect } from 'react'
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
+import { CardActionArea, CardContent, CardHeader, CardMedia, Card, Typography } from '@mui/material';
 
 import Category from "../JSON/Category.json"
 import Menu from "../components/menu"
@@ -58,25 +56,45 @@ const Body = () => {
     // </div>
     <div>
       {listCategory.map((cate: ICategory) => (
-        <Card key={`ListMenu_${cate.TYPE_ID}`} className="mt-6 grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
-          <CardHeader
-            title={cate.TITLE}
-          >
-            <hr />
-          </CardHeader>
-          <CardContent>
-            {
-              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {data.filter(x => x.TYPE_ID === cate.TYPE_ID).map((menu: IMenu) => (
-                  <Card key={`menu_card_${menu.TITLE}`} className="p-5 grid-cols-1" >
-                    <Menu data={menu} key={`Menu_${menu.TITLE}`} />
-                  </Card>
-                ))}
-              </div>
-            }
-          </CardContent>
-        </Card>
+        <>
+          <Card key={`ListMenu_${cate.TYPE_ID}`} className="mt-6 grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 shadow-lg shadow-blue-500/50">
+            <CardHeader
+              title={cate.TITLE}
+            >
+              <hr />
+            </CardHeader>
+          </Card>
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {data.filter(x => x.TYPE_ID === cate.TYPE_ID).map((menu: IMenu) => (
+              <Card key={`menu_card_${menu.TITLE}`} className="grid-cols-1 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:bg-slate-50 duration-150" >
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="150"
+                    src={menu.IMG}
+                    alt={menu.TITLE}
+                    className="min-h-60 max-h-60 h-60 "
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {menu.TITLE}
+                    </Typography>
+                    <Typography variant="h5" color="text.danger">
+                      {menu.PRICE.join("-")} บาท
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+
+              // <Card key={`menu_card_${menu.TITLE}`} className="p-5 grid-cols-1" >
+              //   <Menu data={menu} key={`Menu_${menu.TITLE}`} />
+              // </Card>
+            ))}
+          </div>
+        </>
       ))}
+
+
     </div>
   )
 }
